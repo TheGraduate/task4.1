@@ -38,7 +38,7 @@ fun main() {
     println("Введите сумму для перевода")
     val amount = readLine()
     println("Введите тип карты")
-    val typeCard: String? = readLine()
+    val typeCard = readLine()
     println("Введите суммму предыдущих переводов")
     val lastPay = readLine()
     if (amount != null && lastPay != null && typeCard != null) {
