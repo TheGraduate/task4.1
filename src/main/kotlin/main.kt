@@ -1,7 +1,9 @@
 fun сalculateCommissionVk(amount: Int, typeCard: String = "VkPay", lastPay: Int = 0): String {
     var commission =  "Коммиссия равна : 0"
-    if (lastPay + amount >= 40_000) {
-        commission = "Месячный лимит переводов исчерпан"
+    when (typeCard) {
+        "VkPay"  -> if (lastPay + amount >= 40_000) { commission = "Месячный лимит переводов исчерпан" }
+        "Visa", "Мир" -> commission = сalculateCommissionVisaWorld(amount, typeCard, lastPay)
+        "MasterCard", "Maestro" -> commission = сalculateCommissionMasterMaestro(amount, typeCard, lastPay)
     }
     return commission
 }
@@ -40,10 +42,6 @@ fun main() {
     println("Введите суммму предыдущих переводов")
     val lastPay = readLine()
     if (amount != null && lastPay != null && typeCard != null) {
-        when (typeCard) {
-            "MasterCard", "Maestro" -> println(сalculateCommissionMasterMaestro(amount.toInt(), typeCard, lastPay.toInt()))
-            "Visa", "Мир" -> println(сalculateCommissionVisaWorld(amount.toInt(), typeCard, lastPay.toInt()))
-            "VkPay" ->  println(сalculateCommissionVk(amount.toInt(), typeCard, lastPay.toInt()))
-        }
+        println(сalculateCommissionVk(amount.toInt(), typeCard, lastPay.toInt()))
     }
 }
