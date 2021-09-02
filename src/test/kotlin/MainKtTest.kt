@@ -17,7 +17,7 @@ class MainKtTest {
             lastPay = lastPayTest)
 
         //assert
-        assertEquals("Коммиссия равна : 0", result)
+        assertEquals("Коммиссия равна : 1", result)
     }
 
     @Test
